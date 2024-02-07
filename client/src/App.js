@@ -1,3 +1,4 @@
+// App.js
 import "./App.css";
 import io from "socket.io-client";
 import { useState } from "react";
@@ -18,25 +19,28 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="min-h-screen flex items-center justify-center bg-white">
       {!showChat ? (
-        <div className="joinChatContainer">
-          <h3>Join A Chat</h3>
+        <div className="joinChatContainer flex flex-col gap-3 text-center">
+          <h3 className="text-3xl font-semibold mb-4">Join A Chat</h3>
           <input
             type="text"
-            placeholder="John..."
-            onChange={(event) =>{
-              setUsername(event.target.value)
-            }}
+            placeholder="Enter name..."
+            onChange={(event) => setUsername(event.target.value)}
+            className="input-field w-52 h-10 border-2 border-[#0080FF] rounded px-2 text-lg"
           />
           <input
             type="text"
             placeholder="Room ID..."
-            onChange={(event) => {
-              setRoom(event.target.value);
-            }}
+            onChange={(event) => setRoom(event.target.value)}
+            className="input-field w-52 h-10 border-2 border-[#0080FF] rounded px-2 text-lg"
           />
-          <button onClick={joinRoom}>Join A Room</button>
+          <button
+            onClick={joinRoom}
+            className="join-button w-52 h-12 bg-[#0080FF] text-white text-lg rounded hover:bg-green-600"
+          >
+            Join A Room
+          </button>
         </div>
       ) : (
         <Chat socket={socket} username={username} room={room} />
